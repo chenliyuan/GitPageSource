@@ -79,7 +79,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:chenliyuan/chenliyuan.github.io.git  #这里填的是自己的git(samxrtq是我的git)
+  repo: git@github.com:chenliyuan/GitPageSource.github.io.git  #这里填的是自己的git(samxrtq是我的git)
   branch: master
 search:
   path: search.xml
