@@ -1,12 +1,10 @@
-title: 搭建博客踩得最主要的坑
+title: 搭建博客(blog)踩得最主要的坑
 author: 躲不掉的风
 tags:
   - blog
 categories: []
 date: 2019-06-07 22:39:00
 ---
-
-
 参考博客：https://samxrtq.github.io/2019/05/16/%E5%BB%BA%E7%AB%8BHEXO-github%E5%8D%9A%E5%AE%A2/
 
 
@@ -51,3 +49,32 @@ npm install hexo-fs –save
 
 找到 718行:exports.SyncWriteStream = fs.SyncWriteStream;
 将对应的exports.SyncWriteStream = fs.SyncWriteStream;注释(前面 //)即可！
+
+------------------
+在windows上同步搭建
+参考：https://samxrtq.github.io/2019/05/17/Windows%E4%B8%8Emac%E5%8F%8C%E7%AB%AF%E7%94%A8hexo%E5%86%99%E5%8D%9A%E5%AE%A2/
+
+问题：
+1、如何在本机创建多个key
+```
+#第一步 创建别名key
+ssh-keygen -t rsa -f ~/.ssh/id_rsa.github -C "entere@126.com" 
+#第二步创建config文件
+touch ~/.ssh/config
+chmod 600 ~/.ssh/config#根据需要进行这一步（win上没用这一步）
+#第三步 编辑config文件，将私钥地址附上去
+Host github.com
+    IdentityFile ~/.ssh/id_rsa.github
+
+```
+2、hexo d -g的时候提示git不是内部命令
+解决：检查环境变量，后来发现环境变量的目录git执行文件名字是git_cmd.exe,于是将其改名为git.exe.
+
+![upload successful](\images\pasted-29.png)
+3、上个问题解决后随即提示add不是内部或外部命令
+解决：换成bash命令，脱离cmd
+
+ 
+![upload successful](\images\pasted-30.png)
+4、错误：git地址提交混乱，其中gitpagesource应该放源码，不该提到原来的git库里，后来重新按照步骤来了一遍好了。  
+5、不该更改_config.yml里原来的配置。
