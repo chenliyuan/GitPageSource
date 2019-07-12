@@ -1,4 +1,5 @@
 title: Django项目实践二(偏代码实现)
+date: 2019-07-12 20:14:56
 ---
 - 模板前端与后台交互方法 $.getJSON
 
@@ -59,4 +60,5 @@ title: Django项目实践二(偏代码实现)
 ```
 file=open("templates/ct.txt","w",encoding="utf-8", newline='')
 ```
-
+- 表单提交后不调view接口？   
+表单submit按钮类型写错，应该是submit类型，非button类型。

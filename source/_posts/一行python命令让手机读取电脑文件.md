@@ -1,5 +1,10 @@
 title: 一行python命令让手机读取电脑文件
+date: 2019-07-02 20:55:58
 ---
 https://blog.csdn.net/why19940926/article/details/62054757
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190102191216717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1cGVyX2NoZW5seQ==,size_16,color_FFFFFF,t_70)
+```
+E:\workspace\newworkbench\static>python -m http.server 8000
+Serving HTTP on 0.0.0.0 port 8000 ...
+10.160.84.95 - - [02/Jul/2019 20:41:29] "GET /app.jpg HTTP/1.1" 200 -
+```
