@@ -3,6 +3,7 @@ date: 2019-06-09 22:16:15
 ---
 #### 认识Django
 1. Python下有许多款不同的 Web 框架。Django是**重量级**选手中最有代表性的一位。许多成功的网站和APP都基于Django。
+
 2. Django是一个**开放源代码**的Web应用框架，由**Python**写成。
 3. Django采用了MVC的软件设计模式，即模型M，视图V和控制器C
 
@@ -30,7 +31,7 @@ date: 2019-06-09 22:16:15
 			  &nbsp;_&nbsp;_wsgi.py
 python manage.py migrate  #通过数据库迁移，初始状态下的应用程序表将在数据库中被创建。
 创建完成后，根目录里应该多了个db.sqlite3
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190519175930883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1cGVyX2NoZW5seQ==,size_16,color_FFFFFF,t_70)
+
  #### 4.  运行开发服务器
 	python manage.py runserver
 
@@ -41,20 +42,19 @@ python manage.py migrate  #通过数据库迁移，初始状态下的应用程�
 	 “应用程序”（即app，也就是下文中的blog）是模型+试图+模板+url 的组合
 	 应用程序与框架进行交互，提供特定的功能。
 #### 5.  创建应用程序
- 继续在虚拟环境里执行 python manage.py  startapp blog
-此时多了个blog/目录 和下面文件如下：![在这里插入图片描述](https://img-blog.csdnimg.cn/20190519181919913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1cGVyX2NoZW5seQ==,size_16,color_FFFFFF,t_70)
-admin.py 可在该文件中注册模型
-app.py 包含了blog这个应用程序主要配置内容（之后在激活app时候用到）
-migrations包含了应用程序(app)的数据库迁移。迁移可以使Django跟踪模块变化内容，并相应的同步数据库。
-model.py 包含了应用程序的数据模型，但是也可以被置空。
-test.py 用来测试的
-views.py包含逻辑内容
+ 继续在虚拟环境里执行 python manage.py  startapp blog  
+此时多了个blog/目录 和下面文件如下：
+admin.py 可在该文件中注册模型  
+app.py 包含了blog这个应用程序主要配置内容（之后在激活app时候用到）   
+migrations包含了应用程序(app)的数据库迁移。迁移可以使Django跟踪模块 变化内容，并相应的同步数据库。  
+model.py 包含了应用程序的数据模型，但是也可以被置空。  
+test.py 用来测试的  
+views.py包含逻辑内容  
 
 #### 6. 数据模型
- 每个模型是一个python类，为django.db.models.Model的子类，每个属性视为数据库的一个字段。
+ 每个模型是一个python类，为django.db.models.Model的子类，每个属性视为数据库的一个字段。  
  - 创建model.py文件中的数据表（即各python类）
  
-
 ```
 from django.db import models
 from django.utils import timezone
@@ -80,21 +80,21 @@ class Post(models.Model):
 其中ForeignKey 的用法，待总结。。
  - 为了使Django跟踪应用程序并针对模型创建数据表，我们需要激活：
  &nbsp; &nbsp;编辑setting.py文件，像INSTALLED_APPS设置中加入app.py中所用到的类BlogConfig。格式为'blog.apps.BlogConfig'（若使用pycharm等IDE可能会给自动创建，可省略此步）
- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190519184431753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1cGVyX2NoZW5seQ==,size_16,color_FFFFFF,t_70)
+
  - 迁移两步走
  创建了数据模型，我们最终需要的是定义**数据库**表，所以我们需要迁移：
  1）python manage.py makemigrations blog  #让 Django 知道我们在我们的模型有一些变更，此时生成了0001_initial.py文件
  
  			python manage.py sqlmigrate blog 0001 #命令可以查看某次迁移的SQL语句。
  2） python manage.py migrate  #将数据库与模型最终同步。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190519190312322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1cGVyX2NoZW5seQ==,size_16,color_FFFFFF,t_70)
+
   #### 7. 站点管理
  -  ###### 登录
 什么是站点？
 对应的是之前说的admin.py应用。只要启动项目后，打开/admin/路径即可。
 但是前提是需要创建超级用户（不然也登不进去呀）
 python manage.py createsuperuser
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190519194338192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1cGVyX2NoZW5seQ==,size_10,color_FFFFFF,t_70)
+
  - ##### 向站点添加模型
 重点来啦~~~ 怎么把模型添加到站点，以后方便我们维护呢？
 编辑admin.py文件
@@ -104,7 +104,7 @@ from .models import Post.
 admin.site.register(Post)  # 注册模型
 ```
 之后打开站点就可以看到我们的模型啦，打开后就可以进行维护啦
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190519200032659.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1cGVyX2NoZW5seQ==,size_6,color_FFFFFF,t_70)
+
  #### 8.  定制模型的显示方式
 待整理
  #### 9. QuerySet和管理器
@@ -299,7 +299,3 @@ setting-project中可添加和删除编译环境选项
 
 
 ![upload successful](/images/pasted-24.png)
-
-
-
-

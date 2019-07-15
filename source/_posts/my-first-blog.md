@@ -5,11 +5,21 @@ tags:
 categories: []
 date: 2019-06-07 22:39:00
 ---
+使用过程中博客报错：Unhandled rejection Template render error: (unknown path) [Line 9, Column 39]
+
+
+一篇博客中带有大括号的符号导致，以后避免使用或者放在代码框中。
+
+![upload successful](/images/pasted-60.png)
+
+##### ------以下是搭建过程和问题 -------#### 
+
+
 参考博客：https://samxrtq.github.io/2019/05/16/%E5%BB%BA%E7%AB%8BHEXO-github%E5%8D%9A%E5%AE%A2/
 
 
-问题1：
-hexo fs.SyncWriteStream is deprecated
+- 问题1：
+ hexo fs.SyncWriteStream is deprecated
 
 查看各种博客，还让再安装一系列的包，最后一步步入坑，比如这种
 ```
@@ -89,6 +99,3 @@ Host github.com
 3.hexo d -g   #将博客推送到chenliyuan.github.io  （hexo d会清空chenliyuan.github.io这个仓库，然后将发布后的html们放上去，chenliyuan.github.io这个仓库就是网址要显示的内容）
 4.git add.  commit  push  #这一步是为了把源代码上传到GitpageSource仓库，以防你下一个设备用的时候，源代码不同步
 5.以.md文件存储的，程序会将这些.md文件，给转换为html;你的主题设置，hexo设置，你的网站颜色设置，等等++++你写的博客源码(.md文件)+++图片.然后你hexo g的时候，hexo就会将这些源码进行编译，发布到public文件夹下，那里就是发布后的    其实是一个网站
-
-
-
