@@ -45,3 +45,10 @@ tags:
   join拼接如{{value|join:"//"}}
   truncatewords 缩短内容长度
   ```
+  
+  【问题】  
+  1. 表单提交返回后，请求input中填写值不展示？  
+  value中设置返回值：
+  ```
+  input type="text" name="phone" placeholder="手机号" value={{ cardno }}></td>
+  ```

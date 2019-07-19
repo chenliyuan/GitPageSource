@@ -1,4 +1,4 @@
-title: python encode decode
+title: 'python encode decode '
 date: 2019-07-12 14:55:45
 ---
 这里只说python3,不谈python2

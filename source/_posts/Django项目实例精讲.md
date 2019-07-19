@@ -9,6 +9,8 @@ date: 2019-06-09 22:16:15
 
 #### 1. 创建隔离的python环境
 
+推荐文章：https://www.cnblogs.com/jasmine-Jobs/p/7045016.html
+
 ```
   pip install virtualenv #安装
   virtualenv my_env#创建目录

@@ -1,4 +1,4 @@
-title: Django 模型models
+title: Django模型models
 author: 躲不掉的风
 date: 2019-07-12 17:45:16
 tags:
@@ -25,16 +25,25 @@ for v in value:#其中每个记录v都是个ContentTable object
 ```
   官方接口文档：https://docs.djangoproject.com/zh-hans/2.1/ref/models/querysets/#filter
   自强学院：https://code.ziqiangxuetang.com/django/django-models.html
+  
 
 4. QuerySet API主要分为这两类：  
 1) Methods that return new QuerySets：  
   如：
   filter\all\...  
   可以使用List转换啊  
+
 2) Methods that do not return QuerySets:  
   Returns the object matching the given lookup parameters  
   
   如：get\creater\count\...  
+   - update  
+   对指定的字段执行SQL更新查询，并返回匹配的行数。唯一的限制是它只能作用在表记录上，不能直接作用在模型object上，举例：
+   ```
+   >>> Entry.objects.update(blog__name='foo') # Won't work!
+   >>>  Entry.objects.filter(blog__id=1).update(comments_on=True) # works!
+   ```
+
   
 5. 修改数据库操作实例
   
@@ -47,6 +56,7 @@ for v in value:#其中每个记录v都是个ContentTable object
 6. **模型字段** 常用的模型字段有:  
  * BooleanFiled 字段值只包含True和Flase.如果没有设置Field.default属性，那么它的默认值是None.默认对应HTML的复选框：<input type="checkbox"...>   
  * CharFiled用于保存不太长的字符串。使用该字段必须要给出CharFiled.max_length,默认对应HTML的文本框<input type="text"...>
+ - IntegerField 
  - TextField超长文本类型。
  * DateField对应Python中的datetime.date日期类型。其中可选参数DateField.auto_now，每当保存数据时都会将该字段值更新为当前时间。  
  DateField.auto_now_add只有当数据第一次创建的时候才保存当前时间。  

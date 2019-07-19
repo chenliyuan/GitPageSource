@@ -12,24 +12,8 @@ Apache是世界使用排名第一的Web服务器软件。它可以运行在几�
 Server version: Apache/2.2.15 (Unix)
 Server built:   Oct 19 2017 16:43:38
 ```
-2. 查看linux内核   
-结合使用uname -a 查看linux内核
-```
-[root@tv6-hotelqa-newhotel-17 ~]# cat /etc/issue
-CentOS release 6.4 (Final
-```
-3. 查看端口占用情况
 
-	![upload successful](\images\pasted-36.png)
-
-4. Linux显示tab 空格 换行符
-	![upload successful](\images\pasted-39.png)
-
-5. Linux cp -r 原文件夹  新文件夹名 
-
-   -r命令可以文件夹整个复制
-
-6. FQDN 是Fully Qualified Domain Name的简写，意思是完整的域名。
+2. FQDN 是Fully Qualified Domain Name的简写，意思是完整的域名。
 
   FQDN=主机名（hostname）+域后缀
   如 主机名是 fanyi 域名是 baidu.com
@@ -40,19 +24,8 @@ CentOS release 6.4 (Final
   ![upload successful](\images\pasted-45.png)
   hostname -F /etc/hostname更新主机名
   hostname -f看到主机名
-7. linux用户管理
-  添加组：groupadd policeman
-  查看组：cat /etc/group |more
-  创建用户useradd –g 组名 用户名
-  删除用户 userdel 用户名
-  查看用户：cat /etc/passwd（根据对应组id到组里查对应组名）
-  ![upload successful](\images\pasted-50.png)
-  groups www-data 查看对应用户（这里是www-data）的组名
-  ```
-  [root@tv6-hotelqa-newhotel-17 tmp2]# groups www-data
-  www-data : nginx
-  ```
-8. 路径
+
+- 路径
  
  centos6x  nginx默认一般在/etc/nginx路径下
  httpd.conf 一般在/etc/httpd 文件夹下的子文件里 使用 (find  +地址 -name  +名称)查找即可
@@ -218,3 +191,9 @@ lsof -i :80 | grep httpd |grep -v grep |xargs kill -9
 ![upload successful](\images\pasted-55.png)
 原因：原来动了setting里设置静态文件的路径，多了个斜杠，去掉还原就好了。
 ![upload successful](\images\pasted-56.png)
+15、关于部署   
+- . 直接覆盖安装相关文件或文件夹，更改所属人为已设角色和用户(后台登录后报500错误就是这个原因);再重新启动服务即可（setting文件debug:false）。   
+supervisorctl -c /etc/supervisord.conf restart nwk
+
+-  数据库被覆盖？
+尝试不覆盖migrations文件夹
