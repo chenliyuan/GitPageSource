@@ -1,4 +1,5 @@
 title: Django项目实践一
+date: 2019-08-08 19:53:45
 ---
 - 本机之前一直装的事2.7，但是现在3.x已然成为趋势，准备更新3.7
 
@@ -152,3 +153,4 @@ pip  install openpyxl
 pip install requests
 - How to fix error: django.db.utils.NotSupportedError: URIs not supported
 这个问题浪费了很长的时间解决，首先是尝试升级qlite的版本，但是升级后依旧不能解决，最后根据提示中的目录将base.py中的字段改后解决了。即参考文章中的第一个方法。摘自:https://blog.csdn.net/zhuangmezhuang/article/details/82776272
+- 'WSGIRequest' object has no attribute 'urlopen'
