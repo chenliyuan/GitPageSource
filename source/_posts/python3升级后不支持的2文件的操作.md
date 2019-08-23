@@ -1,5 +1,11 @@
 title: python3升级后不支持的2.x文件的操作
+date: 2019-08-22 15:17:41
 ---
+- ##### range()   
+Python3 range()函数返回的是一个**可迭代对象（类型是对象）**，而不是列表类型， 所以打印的时候不会打印列表。
+
+
+- ##### 其他
 **python 3.3.2报错：No module named 'urllib2' 解决方法**
 在python3.3里面，用urllib.request代替urllib2
  **ImportError: No module named 'ConfigParser**
@@ -10,24 +16,23 @@ urllib.quote改成urllib.request.quote
   最后通过交流发现需要加在urlencode语句后加encode(encoding='UTF8')
 同时，在输出时，再使用decode("utf-8")进行解码，往往更加能够取的理想的效果。
 
-```
- 1 from urllib import request
- 2 from urllib import parse
- 3 
- 4 url = "https://movie.douban.com/j/chart/top_list?type=11&interval_id=100%3A90&action="
- 5 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"}
- 6 formdata = {
- 7     'start': '0',
- 8     'limit': '10'
- 9 }
-10 
-11 data = parse.urlencode(formdata).encode(encoding="utf-8")
-12 req = request.Request(url=url,headers=headers)
-13 response = request.urlopen(req)
-14 print(response.read().decode("utf-8"))
-```
+  ```
+   1 from urllib import request
+   2 from urllib import parse
+   3 
+   4 url = "https://movie.douban.com/j/chart/top_list?type=11&interval_id=100%3A90&action="
+   5 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"}
+   6 formdata = {
+   7     'start': '0',
+   8     'limit': '10'
+   9 }
+  10 
+  11 data = parse.urlencode(formdata).encode(encoding="utf-8")
+  12 req = request.Request(url=url,headers=headers)
+  13 response = request.urlopen(req)
+  14 print(response.read().decode("utf-8"))
+  ```
 
---------------------- 
 
 **TypeError: Can‘t convert ‘bytes‘ object to str implicitly**
 解决方法：使用字节码的decode()方法。
