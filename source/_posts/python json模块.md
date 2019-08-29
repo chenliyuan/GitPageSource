@@ -1,10 +1,14 @@
 title: python json模块
 date: 2019-07-19 10:20:35
 ---
-1. json.dumps[卸载] 把一个Python对象编码转换成--->json**字符串**
-2. json.loads[装上]把json字符串解码转换成--->python**对象dict**
+1. json.dumps[卸载掉对象]   
 
-	其中 json 有下面三种样式：
+	把一个Python对象编码转换成--->json**字符串**
+2. json.loads[装上对象]    
+
+	把json字符串解码转换成--->python**对象dict**
+
+其中 json 有下面三种样式：
 	
 	字典样式 '{"name":"gzj", "age":"23", "sex":"man"}'
 	列表样式 '["gzj", 23, "man"]'
@@ -18,7 +22,9 @@ json.dump
 	```
 	a = {"name":"Tom", "age":23}
 	with open("test.json", "w", encoding='utf-8') as f:
-	
+	  ... # Parameter sort_keys    是否按照字母排序
+    ... # Parameter indent       缩进的空格数
+    ... # Parameter separators   分割符号形式
 	     json.dump(a,f,indent=4) 
 	   # indent 超级好用，格式化保存字典，默认为None，小于0为零个空格
 	   # f.write(json.dumps(a, indent=4))

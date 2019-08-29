@@ -105,6 +105,11 @@ CentOS release 6.4 (Final
  cat /etc/issue
 
 ![upload successful](\images\pasted-65.png)
+
+- 三大操作系统
+
+![upload successful](\images\pasted-66.png)
+
 - 一般来说著名的**linux系统**基本上分两大类：
 
       1.RedHat系列：Redhat、Centos、Fedora等 
