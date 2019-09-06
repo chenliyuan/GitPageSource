@@ -3,6 +3,19 @@ tags: []
 categories: []
 date: 2019-07-15 19:28:00
 ---
+- tar
+```
+tar -czvf  test.tar.gz a.c  #将a.c文件压缩成test.tar.gz
+tar  -xzvf test.tar.gz      #解压缩
+```
+参数说明：
+-t 查看内容    
+-c 建立压缩文档   
+-v 显示所有过程   
+-f 后面接要处理的文件,最后用  
+-x 解压缩  
+-z 有gzip属性  
+
 - vim 有关命令  
 	- u撤销  
 	- vim -b 用来查看二进制比如结束符 
