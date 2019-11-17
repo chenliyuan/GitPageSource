@@ -1,5 +1,5 @@
 title: Django项目实例精讲
-date: 2019-06-09 22:16:15
+date: 2018-09-09 22:16:15
 ---
 #### 认识Django
 1. Python下有许多款不同的 Web 框架。Django是**重量级**选手中最有代表性的一位。许多成功的网站和APP都基于Django。

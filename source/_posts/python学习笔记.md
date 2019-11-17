@@ -1,6 +1,6 @@
 title: python3 HTTP请求
 author: 躲不掉的风
-date: 2019-06-25 17:29:18
+date: 2018-09-25 17:29:18
 tags:
 ---
 利用python作HTTP请求，主要分为以下两种方法

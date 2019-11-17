@@ -1,4 +1,5 @@
-title: Django项目实践-Crypto库
+title: Crypto模块
+date: 2019-10-07 17:12:39
 ---
 背景：
 	由于公司接口有加密解密，自定义接口脚本需要调取Crypto模块，之前用的是php调用python脚本实现的结构体，过于繁琐，打算搭建Django框架实现

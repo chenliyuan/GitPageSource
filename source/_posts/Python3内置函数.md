@@ -11,7 +11,8 @@ date: 2019-07-18 19:25:14
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190526121803806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1cGVyX2NoZW5seQ==,size_16,color_FFFFFF,t_70)
 ### 2. sort 与 sorted 区别：
 
-  - sort 是应用在 list 上的方法，sorted 可以对所有可迭代的对象（比如字典）进行排序操作。
+  - sort 是应用在 list 上的**方法**。  
+   sorted 是**函数**，可以对所有可迭代的对象（比如字典）进行排序操作。
 
    **sorted 语法：**
   sorted(iterable, key=None, reverse=False)  

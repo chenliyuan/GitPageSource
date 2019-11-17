@@ -13,32 +13,42 @@ Server version: Apache/2.2.15 (Unix)
 Server built:   Oct 19 2017 16:43:38
 ```
 
-2. FQDN 是Fully Qualified Domain Name的简写，意思是完整的域名。
+2. FQDN 是Fully Qualified Domain Name的简写，意思是完整的域名。 
 
-  FQDN=主机名（hostname）+域后缀
-  如 主机名是 fanyi 域名是 baidu.com
-  FQDN= fanyi.baidu.com
-  如何查看主机名？
-  设置主机名： vi /etc/hostname
-  第一个字段是该主机的IP地址, 第二个和第三个字段是你希望设置的主机名,最后是刚刚设置的FQDN（这两个顺序应该没关系）:
+  FQDN=主机名（hostname）+域后缀  
+  如 主机名是 fanyi 域名是 baidu.com  
+  FQDN= fanyi.baidu.com  
+  如何查看主机名？  
+  设置主机名： vi /etc/hostname  
+  第一个字段是该主机的IP地址, 第二个和第三个字段是你希望设置的主机名,最后是刚刚设置的FQDN（这两个顺序应该没关系）:  
   ![upload successful](\images\pasted-45.png)
-  hostname -F /etc/hostname更新主机名
-  hostname -f看到主机名
+  hostname -F /etc/hostname更新主机名  
+  hostname -f看到主机名  
 
 - 路径
  
  centos6x  nginx默认一般在/etc/nginx路径下
  httpd.conf 一般在/etc/httpd 文件夹下的子文件里 使用 (find  +地址 -name  +名称)查找即可
  
+- **流程**  
+  1、	首先客户端请求服务资源，  
+  2、	nginx作为直接对外的服务接口,接收到客户端发送过来的http请求,会解包、分析，  
+  3、	如果是静态文件请求就根据nginx配置的静态文件目录，返回请求的资源，   
+  4、	如果是动态的请求,nginx就通过配置文件,将请求传递给uWSGI；uWSGI 将接收到的包进行处理，并转发给wsgi，  
+  5、	wsgi根据请求调用django工程的某个文件或函数，处理完后django将返回值交给wsgi，  
+  6、	wsgi将返回值进行打包，转发给uWSGI，   
+  7、	uWSGI接收后转发给nginx,nginx最终将返回值返回给客户端(如浏览器)。
+
+- **MVT架构图**
  
- 
- 
+![upload successful](\images\pasted-69.png)
  
 搭建过程
 ===========
-最后决定使用 nginx + uwsgi socket 的方式来部署 Django，因为听说是比 Apache mod_wsgi 要复杂一些，但这是目前主流的方法。环境：Centos6 参考：https://code.ziqiangxuetang.com/django/django-nginx-deploy.html  
-其他：  
-https://www.jianshu.com/p/36ef6557c910  
+最后决定使用 nginx + uwsgi socket 的方式来部署 Django，因为听说是比 Apache mod_wsgi 要复杂一些，但这是目前主流的方法。  
+环境：Centos6   
+参考：https://code.ziqiangxuetang.com/django/django-nginx-deploy.html  
+其他：https://www.jianshu.com/p/36ef6557c910  
 
 1、安装nginx   
 sudo yum install epel-release   

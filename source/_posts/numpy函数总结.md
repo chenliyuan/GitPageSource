@@ -1,7 +1,6 @@
----
 title: numpy函数总结
+date: 2019-10-19 21:36:29
 ---
-
 ==DataFrame用法==
 ### 一、类型转换
  Numpy matrices必须是2维的,但是 numpy arrays (ndarrays) 可以是多维的（1D，2D，3D····ND）. Matrix是Array的一个小的分支，包含于Array。所以matrix 拥有array的所有特性。 
@@ -248,5 +247,19 @@ array([[ 1,  2,  3],
 >>> np.concatenate((a,b),axis=1)  #axis=1表示对应行的数组进行拼接
 array([[ 1,  2,  3, 11, 21, 31],
        [ 4,  5,  6,  7,  8,  9]])OC](这里写自定义目录标题)
+
+```
+
+#### 其他函数 np.arange np.repeat
+```
+import numpy as np
+ 
+x = np.arange(5)  
+print (x)
+c=np.array(([1,2],[3,4]))
+print (c)
+print(np.repeat(c,2))
+print(np.repeat(c,2,0))
+print(np.repeat(c,2,1))
 
 ```

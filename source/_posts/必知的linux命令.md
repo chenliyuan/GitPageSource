@@ -3,7 +3,100 @@ tags: []
 categories: []
 date: 2019-07-15 19:28:00
 ---
-- tar
+#### cut命令
+
+    -b 以字节为单位分割
+    -c以字符为单位分割
+    -d 自定义分隔符
+    -f与-d一起使用，指定哪一列
+  如：以冒号为分隔符，取第四列相当于awk -F: '{print $4}'
+  
+  	cat /etc/passwd|cut -d: -f4
+        
+#### /etc/passwd字段
+/etc/passwd中一行记录对应着一个用户，每行记录又被冒号(分隔为7个字段，其格式和具体含义如下：
+
+    /etc/passwd
+	 用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell
+    
+    # cat /etc/group
+	组名：加密密码：组ID：所有属于该组的用户。
+##### 替换sed
+
+  替换掉每行
+  第一个原字符串 sed -i 's/原字符串/新字符串' filename
+  
+  替换掉所有的字符串 sed -i 's/原字符串/新字符串/g' filename
+  
+  	-i 的作用是直接作用于(修改)文件，而不加-i只是在终端打印结果
+    
+       # 对每行匹配到的第一个字符串进行替换
+      sed -i 's/原字符串/新字符串/' ab.txt 
+
+      # 对全局匹配上的所有字符串进行替换
+      sed -i 's/原字符串/新字符串/g' ab.txt 
+
+      # 删除所有匹配到字符串的行
+      sed -i '/匹配字符串/d'  ab.txt  
+
+      # 特定字符串的行后插入新行
+      sed -i '/特定字符串/a 新行字符串' ab.txt 
+
+      # 特定字符串的行前插入新行
+      sed -i '/特定字符串/i 新行字符串' ab.txt
+
+      # 把匹配行中的某个字符串替换为目标字符串
+      sed -i '/匹配字符串/s/源字符串/目标字符串/g' ab.txt
+
+      # 在文件ab.txt中的末行之后，添加bye
+      sed -i '$a bye' ab.txt   
+
+      # 对于文件第3行，把匹配上的所有字符串进行替换
+      sed -i '3s/原字符串/新字符串/g' ab.txt
+      
+	  # 显示文件的第二行到最后一行
+      sed -n '2, $p' ab.txt        
+
+原文链接：https://blog.csdn.net/yjk13703623757/article/details/79548450
+
+- awk '{print $1}' fortest.php |sort|uniq -c|wc -l  
+
+    sort命令排序（默认安卓首字母ASCII排序）  
+    uniq常与sort结合使用，去除重复行 -c 显示重复个数  
+- **wc 命令**
+计算行数、单词数、字节数。只有三个参数：
+
+  -l 只显示行数（lines）  
+  -w 只显示单词数(words)  
+  -c 只显示字节数(chars)
+  
+##### 查看网络连接状态(路由表)
+ 可以查端口号，而ps无端口号
+ 
+	netstat -nlap |grep -i 6379
+  ```
+  -n 拒绝显示别名，能显示数字的全部转化成数字。
+  -l 仅列出有在 Listen (监听) 的服務状态
+  -a (all)显示所有选项，默认不显示LISTEN相关
+  -p 显示建立相关链接的程序名
+  ```
+  nlap基本能满足一般的查找需求，记住这个组合即可 
+  
+##### 查看进程 ps   
+常用两个组合：
+
+     ps -ef |grep -v grep |grep tomcat
+     ps -aux
+     类似于lsof -i :8080       
+     #lsof (list openfiles)  相当于 netstat  nlap |grep -i 8080
+ 
+- Linux 下命令有哪几种可使用的通配符？分别代表什么含义?
+
+      ?可替代单个字符。
+      *可替代任意多个字符。
+      方括号[charset]可替代 charset 集中的任何单个字符，如[a-z]，[abABC]
+![upload successful](\images\pasted-68.png)
+##### tar命令
 ```
 tar -czvf  test.tar.gz a.c  #将a.c文件压缩成test.tar.gz
 tar  -xzvf test.tar.gz      #解压缩
@@ -16,19 +109,20 @@ tar  -xzvf test.tar.gz      #解压缩
 -x 解压缩  
 -z 有gzip属性  
 
-- vim 有关命令  
-	- u撤销  
-	- vim -b 用来查看二进制比如结束符 
-    - :set num显示行号 ;  
-    - :7,10d 清除7到10行的内容；
-    - 行定位：G 定位到最后一行；
-          1G定位到第一行；
-          17G定位到第17行；
-    - 复制粘贴：
-      yy 复制当前行
-      p 粘贴
-    - 字符替换命令：
-  		:s/old/new/g ==:%s/old/new/g 替换所有
+#####  vim 常用命令 
+
+      - u撤销  
+      - vim -b 用来查看二进制比如结束符 
+      - :set num显示行号 ;  
+      - :7,10d 清除7到10行的内容；
+      - 行定位：G 定位到最后一行；
+            1G定位到第一行；
+            17G定位到第17行；
+      - 复制粘贴：
+        yy 复制当前行
+        p 粘贴
+      - 字符替换命令：
+          :s/old/new/g ==:%s/old/new/g 替换所有
 
 - |：   管道命令  如 cat note.conf |more   
 	其中Shift + PageUp 向上查看
@@ -36,63 +130,79 @@ tar  -xzvf test.tar.gz      #解压缩
 	- grep -i 不区分大小写
 - ls ：  -a 所有（all）、-l 列显示(list)、ls -h（大小GB、KB显示,默认是按照字节显示大小的）、
 ls -l=ll ll -ht  t标识按照时间倒序
-- find：  
-    * -name 例：find /home -name  h?llo*;   
-    * -size find /home -size +10k
+#####  查找命令： 
+
+	find:
+
+      -name 例：find /home -name  h?llo;   
+      -size find /home -size +10k
+    
+   whereis: 二进制文件，说明文档，源文件等
+   which :可执行文件
+   
 - 重定向命令 >  
   * ls -l /etc  > /home/myback.txt  (覆盖重定向)把显示的结果覆盖到/home/myback.txt中去   
   * ls -l /etc/  >>  /home/myback.txt   追加重定向
   
 - 清空文件三种方法
- -   ```> log.txt   清空log.txt文件```
- -  ```echo "" >log.txt```
- -  ```cat /dev/null >log.txt```
- 
-- 文件颜色     
-绿色-> 可执行文件  
-蓝色-> 目录   
-浅蓝色->链接  
-红色->压缩文件  
+  
+ 1. 》 log.txt   清空log.txt文件(单箭头)  
+ 2. echo "" >log.txt  
+ 3. cat /dev/null >log.txt
 
-![upload successful](\images\pasted-64.png)
-- lsof(list openfiles)  
-	
-	eg:  lsof -i :8080  查看所有8080端口的网络连接  
-相当于 netstat  nlap |grep -i 8080
+
+
 - 创建用户以及查看当前用户
-useradd redis
-passwd  redis
-/etc/group 查看所有组
-/etc/shadow和/etc/passwd查看所有用户
+
+  useradd redis  
+  passwd  redis  
+  /etc/group 查看所有组  
+  /etc/shadow和/etc/passwd查看所有用户
 
 - 查看内存使用情况
-free -m(m为MB,g为GB)
-查看磁盘使用情况：df -lh
-查看当前目录下所有文件大小  du -sh *
 
-- chown  修改所属用户
+  free -m(m为MB,g为GB)  
+  查看磁盘使用情况(disk free)：df -lh  
+  查看当前目录下所有文件大小  du -sh *   
+
+#####  chown  修改所属用户
 chown -R tester:tester /var/www
-- chmod  权限修改
-
-    一共有两种语法，一种是chmod ugo+r file 这种
-    一种是chmod abc file(其中abc是数字)
-    具体来说，abc分别表示User、Group、及Other的权限。其中r=4,w=2,x=1
-
-  - 若要rwx属性则4+2+1=7
-  - 若要rw-属性则4+2=6
-  - 若要r-x属性则4+1=5
-  - 若用chmod 4755（或755） filename可使其具有root权限
+##### chmod  权限修改两种语法
+ ###### 一种是chmod ugo+r file 这种
  
-- 查看某端口连接状态
+         命令格式：chmod {u|g|o|a}{+|-|=}{r|w|x} filename 
+          u (user)   表示用户本人。 
+          g (group)  表示同组用户。 
+          o (oher)   表示其他用户。 
+          a (all)    表示所有用户。 
+          +          用于给予指定用户的许可权限。 
+          -          用于取消指定用户的许可权限。 
+          =          将所许可的权限赋给文件。 
+          r (read)   读许可，表示可以拷贝该文件或目录的内容。 
+          w (write)  写许可，表示可以修改该文件或目录的内容。 
+          x (execute)执行许可，表示可以执行该文件或进入目录。
 
-	netstat -nlap |grep -i 6379
-  ```
-  -n 拒绝显示别名，能显示数字的全部转化成数字。
-  -l 仅列出有在 Listen (监听) 的服務状态
-  -a (all)显示所有选项，默认不显示LISTEN相关
-  -p 显示建立相关链接的程序名
-  ```
-  nlap基本能满足一般的查找需求，记住这个组合即可
+  例如：   
+  
+          # chmod a+rx filename 
+            让所有用户可以读和执行文件filename。 
+          # chmod go-rx filename 
+            取消同组和其他用户的读和执行文件filename的权限。 
+          # chmod 741 filename 
+            让本人可读写执行、同组用户可读、其他用户可执行文件filename。 
+          # chmod -R 755 /home/oracle 
+    递归更改目录权限，本人可读写执行、同组用户可读可执行、其他用户可读可执行 
+
+
+   ###### 一种是chmod abc file(其中abc是数字)
+    
+   具体来说，abc分别表示User、Group、及Other的权限。其中r=4,w=2,x=1
+
+    - 若要rwx属性则4+2+1=7
+    - 若要rw-属性则4+2=6
+    - 若要r-x属性则4+1=5
+    - 若用chmod 4755（或755） filename可使其具有root权限
+
 - cp  
   cp -r 原文件  新文件名  
   -r目录复制
@@ -137,17 +247,28 @@ CentOS release 6.4 (Final
       3支持tar包
 	
 - linux常用目录
-/bin  存放二进制可执行文件，常用命令一般都在这里
-/etc 存放系统管理和配置文件
-/usr/
-/opt
-/root
-/var
 
-- awk '{print $1}' fortest.php |sort|uniq -c|wc -l   
-  sort命令排序（默认安卓首字母ASCII排序）  
-  uniq常与sort结合使用，去除重复行 -c 显示重复个数  
-  wc 计算字数 -l只显示行数
+/bin  存放二进制可执行文件，常用命令一般都在这里  
+/etc 存放系统管理和配置文件   
+/usr/  
+/opt  
+/root  
+/var   
+
+
+- 文件颜色     
+  绿色-> 可执行文件  
+  蓝色-> 目录   
+  浅蓝色->链接  
+  红色->压缩文件  
+
+![upload successful](\images\pasted-64.png)   
+##### linux上安装软件
+      1）解压缩，如tar.gz格式的解压缩命令为tar -xzvf soft.tar.gz 
+      2） 执行“./configure”命令为编译做好准备；
+      3） 执行“make”命令进行软件编译；
+      4） 执行“make install”完成安装；
+      5） 执行“make clean”删除安装时产生的临时文件。
 - **about mac操作**   
 mac下显示/隐藏文件，shit+cmd+句号
 - **安装Yum**   

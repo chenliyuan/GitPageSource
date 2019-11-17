@@ -1,5 +1,5 @@
 title: Vim命令及常见问题
-date: 2019-06-16 20:55:46
+date: 2018-09-16 20:55:46
 ---
 原文：http://www.cnblogs.com/softwaretesting/archive/2011/07/12/2104435.html
 ==命令历史==

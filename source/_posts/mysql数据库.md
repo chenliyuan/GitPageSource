@@ -3,6 +3,7 @@ author: 躲不掉的风
 date: 2019-06-16 12:36:57
 tags:
 ---
+##### linux安装mysql
 使用pymysql的时候创建表不成功，提示连不到，于是才意识到本机没有安装Mysql服务，步骤：  
 1、下载https://dev.mysql.com/downloads/mysql/
 2、安装的时候设置root密码  
@@ -15,3 +16,13 @@ tags:
 执行后提示Warning: (3719, "'utf8' is currently an alias for the character set UTF8MB3, but will be an alias for UTF8MB4 in a future release. Please consider using UTF8MB4 in order to be unambiguous.")
   result = self._query(query)
 忽略即可，表已创建完毕
+
+#### 数据库创建满足三大范式
+###### 1.原子性
+不可再拆分
+###### 2.主键与其他列相关联
+与主键无关的列需要去掉
+###### 3.主键与其他列直接相关联
+若间接相关不可以，可拆分成两个表
+
+参考：https://blog.csdn.net/kenhins/article/details/51084815

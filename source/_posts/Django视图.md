@@ -10,14 +10,17 @@ tags:
     ```
     中所用的标识符，实际是双括号后返回的是key对应的值。如
 ```
-#hello.html
-	<h1>{{hello}}</h1>
-#views.py
+#hello.html#
+		<h1>{{hello}}</h1>
+#views.py#
 def hello(request):
-     values={}
-     values["hello"]="hello world!"
-     return render(request,'hello.html',values)
+		values={}
+		values["hello"]="hello world!"
+		return render(request,'hello.html',values)
 ```
+
+    【注】render()与render_to_response()均是django中用来显示模板页面的，但是在django1.3之后，render()便比render_to_response()更加招人待见！最明显的就是前者会自动使用RequestContext，而后者需要coding进去
+
 	- render_to_string 返回字符串
     - redict（to,permanent=False,*args,**kwargs）第一个参数常常为模板
     - get_object_or_404 提取数据不存在则抛出异常
