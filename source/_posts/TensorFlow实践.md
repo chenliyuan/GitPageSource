@@ -1,4 +1,6 @@
 title: TensorFlow实践
+author: 躲不掉的风
+date: 2019-9-24 15:30:42
 ---
 1. 安装 TensorFlow
 系统版本：mac 10.12.6 python版本：2.7

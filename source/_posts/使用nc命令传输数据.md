@@ -1,5 +1,7 @@
 
 title: 使用nc命令传输数据
+author: 躲不掉的风
+date: 2019-9-24 15:30:42
 ---
 原文：https://www.cnblogs.com/nmap/p/6148306.html
 	nc是netcat的简写，有着网络界的瑞士军刀美誉。因为它短小精悍、功能实用，被设计为一个简单、可靠的网络工具
