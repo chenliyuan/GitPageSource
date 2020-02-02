@@ -3,7 +3,7 @@ tags: []
 categories: []
 date: 2019-07-15 19:28:00
 ---
-#### cut命令
+##### cut命令
 
     -b 以字节为单位分割
     -c以字符为单位分割
@@ -12,8 +12,8 @@ date: 2019-07-15 19:28:00
   如：以冒号为分隔符，取第四列相当于awk -F: '{print $4}'
   
   	cat /etc/passwd|cut -d: -f4
-        
-#### /etc/passwd字段
+    
+##### /etc/passwd字段
 /etc/passwd中一行记录对应着一个用户，每行记录又被冒号(分隔为7个字段，其格式和具体含义如下：
 
     /etc/passwd
@@ -59,11 +59,11 @@ date: 2019-07-15 19:28:00
 
 原文链接：https://blog.csdn.net/yjk13703623757/article/details/79548450
 
-- awk '{print $1}' fortest.php |sort|uniq -c|wc -l  
+##### awk '{print $1}' fortest.php |sort|uniq -c|wc -l  
 
     sort命令排序（默认安卓首字母ASCII排序）  
     uniq常与sort结合使用，去除重复行 -c 显示重复个数  
-- **wc 命令**
+##### **wc 命令**
 计算行数、单词数、字节数。只有三个参数：
 
   -l 只显示行数（lines）  
@@ -150,8 +150,6 @@ ls -l=ll ll -ht  t标识按照时间倒序
  2. echo "" >log.txt  
  3. cat /dev/null >log.txt
 
-
-
 - 创建用户以及查看当前用户
 
   useradd redis  
@@ -168,7 +166,7 @@ ls -l=ll ll -ht  t标识按照时间倒序
 #####  chown  修改所属用户
 chown -R tester:tester /var/www
 ##### chmod  权限修改两种语法
- ###### 一种是chmod ugo+r file 这种
+###### 一种是chmod ugo+r file 这种
  
          命令格式：chmod {u|g|o|a}{+|-|=}{r|w|x} filename 
           u (user)   表示用户本人。 
@@ -214,7 +212,7 @@ chown -R tester:tester /var/www
 [root@tv6-hotelqa-newhotel-17 ~]# cat /etc/issue
 CentOS release 6.4 (Final
 ```
-- ln 软连接和硬链接
+##### ln 软连接和硬链接
 ```
 第一，ln命令会保持每一处链接文件的同步性，也就是说，不论你改动了哪一处，其它的文件都会发生相同的变化；
 第二，ln的链接又软链接 和硬链接两种，
@@ -223,13 +221,14 @@ CentOS release 6.4 (Final
 第三，指向一个文件的所有 硬链接都删掉的话文件的内容才会被删掉
 		  软链接只要删掉了源链接文件，软链接也就失效了
 ```
+   若失败可添加-f参数即ln -sf强行添加试试
    
--  **查看linux系统版本**
- cat /etc/issue
+#####  **查看linux系统版本**
+ cat /etc/issue  或者 uname -a
 
 ![upload successful](\images\pasted-65.png)
 
-- 三大操作系统
+##### 三大操作系统关系
 
 ![upload successful](\images\pasted-66.png)
 
@@ -246,31 +245,17 @@ CentOS release 6.4 (Final
       2 包管理工具 apt-get 
       3支持tar包
 	
-- linux常用目录
-
-/bin  存放二进制可执行文件，常用命令一般都在这里  
-/etc 存放系统管理和配置文件   
-/usr/  
-/opt  
-/root  
-/var   
-
-
-- 文件颜色     
-  绿色-> 可执行文件  
-  蓝色-> 目录   
-  浅蓝色->链接  
-  红色->压缩文件  
-
-![upload successful](\images\pasted-64.png)   
+##### Ubuntu 命令行 访问网页
+```
+  apt-get install w3m
+  w3m https://blog.csdn.net/x_xx_xxx_xxxx/article/details/92574331
+```  
 ##### linux上安装软件
       1）解压缩，如tar.gz格式的解压缩命令为tar -xzvf soft.tar.gz 
       2） 执行“./configure”命令为编译做好准备；
       3） 执行“make”命令进行软件编译；
       4） 执行“make install”完成安装；
       5） 执行“make clean”删除安装时产生的临时文件。
-- **about mac操作**   
-mac下显示/隐藏文件，shit+cmd+句号
 - **安装Yum**   
 找了很多资料，什么简洁办法都不管用，还是需要下载很多依赖包安装才行。参考如下
 https://blog.csdn.net/zgege/article/details/82315110
@@ -288,3 +273,5 @@ https://blog.csdn.net/zgege/article/details/82315110
 
 	`vi /usr/bin/yum`
 	把#! /usr/bin/python修改为#! /usr/bin/python2
+    
+ 
