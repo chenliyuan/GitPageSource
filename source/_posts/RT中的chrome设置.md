@@ -1,7 +1,8 @@
 title: RT中的chrome设置
 author: 躲不掉的风
-date: 2020-02-02 17:09:21
-tags:
+tags: []
+categories: []
+date: 2020-02-02 17:09:00
 ---
 ##### jenkins在执行远程docker chrome hub运行RT时候报错：
 	
@@ -19,7 +20,7 @@ tags:
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 chrome_options = Options()
-chrome_options.add_argument('--no-sandbox')#解决DevToolsActivePort文件不存在的报错
+chrome_options.add_argument('--no-sandbox')#停止使用沙箱模式（沙箱模式就是一个封闭的独立的环境。）,也可解决DevToolsActivePort文件不存在的报错
 chrome_options.add_argument('window-size=1920x3000') #指定浏览器分辨率
 chrome_options.add_argument('--disable-gpu') #谷歌文档提到需要加上这个属性来规避bug
 chrome_options.add_argument('--hide-scrollbars') #隐藏滚动条, 应对一些特殊页面
