@@ -3,13 +3,33 @@ author: 躲不掉的风
 date: 2020-01-29 21:16:20
 tags:
 ---
-本地环境:Mac
-
 - 安装谷歌浏览器
 
+	在win上安装：现在百度找个可用的chrome包都很难，最后干脆下载了个软件管理，瞬间安装好了。。。
+
+	不过要想找历史版本就得海淘碰运气了，本来下载程序依赖79，但是后来79貌似不行了，一直报错，一段时间后还是又升级回了最新80版本
+    
 - 安装chromedriver
+
 http://chromedriver.chromium.org/downloads
+或
+http://chromedriver.storage.googleapis.com/index.html
+
 下载的driver的版本需要和浏览器的版本匹配，解压后放到本机,将文件路径添加至PATH中
+
+
+
+1、将下载的可执行文件移到/usr/local/bin下
+
+sudo mv chromedriver /usr/local/bin/chromedriver
+
+2、: 修改文件权限
+
+sudo chmod u+x,o+x /usr/local/bin/chromedriver
+
+3、检查是否安装成功:
+
+	chromedriver --version
 
 - 安装本地运行环境依赖库
 

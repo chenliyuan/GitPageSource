@@ -1,10 +1,60 @@
-title: RT使用语法记录
+title: RT使用语法和技巧
 author: 躲不掉的风
 date: 2020-01-29 11:27:02
 tags:
 ---
-##### 语法记录
 官方文档：https://robotframework.org/#/documentation
+
+######  架构&变量
+参考： https://www.jianshu.com/p/dc9dea0741d5
+```
+*** Variables ***
+# 创建scalar变量
+${NAME}             Robot Framework
+${VERSION}         3.0
+${ROBOT}            ${NAME}  ${VERSION}
+${NULL_VAR}         # 空字符串被赋值给了${NULL_VAR}
+${EXAMPLE}          This value is joined together with a space
+...                 1122333333333333333333333333333333
+${LONG_WORDS}       1111111111111111
+# 创建列表变量
+@{list_data}        1    2    3    4    5
+@{list_data2}       a    b    c    d    e    f
+#创建字典变量
+&{dict_data}        a=b    e=w   y=1    asd=123
+&{dict_data1}       a=1    b=2    c=3    d=4
+...                 r=7    u=90    # 列表元素太长时使用... 分割
+
+*** Test Cases ***
+test_01
+    log    ${NAME}
+    log    ${VERSION}
+    log   @{list_data} [0]
+    log many    &{dict_data}[a]    &{dict_data1}[a]
+    log    &{dict_data}[a]
+```
+###### 全局变量怎么用
+问题：想执行一个文件夹下所有的suite，但是需要通过suite1的返回值供其他suite使用
+1. 定义变量后，直接使用下面接收函数返回值，然后全局赋值？No
+
+        ${download_dir}    校验已下载模板到本地
+        set global variable    ${download_dir}
+2. 差点放弃的时候，发现使用set variable赋值替代接收的函数会有效果
+
+      
+######  数字运算
+
+自增运算
+```
+test_05
+    :FOR   ${i}    IN RANGE     4
+    \    ${i}    run keyword if   ${i}>2   evaluate    ${i}-1
+```
+
+数字运算不使用evaluate
+如 ${i+1}
+
+ range范围同python 比如range 4,则i 取值为0，1，2，3
 ###### 条件语句
 ```
 *** Test Cases ***
@@ -66,6 +116,7 @@ ${after}=     remove string     ${test}       ,     ${SPACE}
 
 字符串转换成数字，可直接使用${${numstr}}或者int(${numstr})
 ###### 列表操作
+
 所有列表操作举例：cnblogs.com/ronyjay/p/11598107.html 
 
 对列表进行遍历的时候IN后面需用@
@@ -79,6 +130,35 @@ ${expectedlist}    get slice from list     ${expected}    1
 
 	| ${ints} =   | Create List | ${1} | ${2} | ${3} |
     
+列表列举定义的时候用@,传参的时候需要用$
+
+```
+*** Variables ***
+@{sales_info}         Sales Info     價格及庫存     mass_update_sales
+
+*** Test Cases ***
+test_01
+    我是关键词    ${sales_info}
+    
+*** keywords ***
+我是关键词
+    [Arguments]    ${x}
+    log   ${x}[1]
+
+```
+
+若元组传参,这时候必须用@了，不然按照列表的方式认为只能传一个列表变量
+```
+test_01
+    我是关键词   1   2   3    4
+
+*** keywords ***
+我是关键词
+    [Arguments]    @{x}
+    log   @{x}[1]
+```
+【总结】在RobotFramework中，标量指的是${}，链表指的是@{}，大括号中间的变量名如果是一样的，那么就是一个变量。区别是标量->整个值就会是一个整体，链表->代表多个值
+
 ###### 正则表达式
 需要双杠
 ```
@@ -148,6 +228,12 @@ log    ${pagenum}
     校验CB卡片信息
     [Teardown]    run keyword if test failed    校验CB卡片信息
 ```
+也可以放在setting中声明，调用关键字如teststop
+
+```
+*** Settings ***
+Test Teardown     teststop
+```
    3.登陆的时候经常不定时出现某些弹窗影响下一步的case？封装关键字轮询查找弹窗
 登陆弹窗轮询查找
 ```
@@ -176,3 +262,22 @@ ${handels}    get window handles
 ${currenthd}    get from list    ${handels}    -1
 select window    ${currenthd}
 ```
+
+#### 多个元素校验--使用或判断
+
+
+    ${status1}   run keyword and return status     wait until element is visible    ${homepage_ele}[button_in_market_continue]
+    ${status2}   run keyword and return status     wait until element is visible  ${homepage_ele}[vari_marketingcentre]
+    校验为真  ${status1} or ${status1}
+    
+或
+
+    校验包含任何一个值
+        [Arguments]    ${str}    @{veluelist}
+        run keyword and continue on failure    should contain any    ${str}    @{veluelist}
+
+####  定位元素至可见
+
+    execute javascript    document.documentElement.scrollTop=200
+    
+  若是向上滚动，则数值使用负数

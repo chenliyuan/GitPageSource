@@ -84,7 +84,7 @@ $ git config --gobal core.autocrlf false
     1) git config --list 或者git config -l查看配置项
     2) git  config --global unset +配置项全名
   
-   ###### 10. 、git 分支拉取
+###### 10. 、git 分支拉取
    https://blog.51cto.com/13893093/2175764?source=dra
 1. 查看本地分支
    $ git branch
@@ -103,3 +103,14 @@ git fetch origin game-of-live-first_branch
 git checkout -b game-of-live-first_branch origin/game-of-live-first_branch
 把game-of-live-first_branch远程分支上的内容都拉取到本地
 git pull origin game-of-live-first_branch
+
+###### 11.  You are in 'detached HEAD' state. 
+You can look around, make experimental changes and commit them, and you can discard any commits you make in this state without impacting any branches by performing another checkout.
+
+解决：git checkout master
+```
+LiyuandeMacBook-Pro:scqa_ui_auto_platform_projects liyuanchen$ git checkout master
+Already on 'master'
+Your branch is up to date with 'origin/master'.
+```
+

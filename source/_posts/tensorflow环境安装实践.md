@@ -4,7 +4,6 @@ tags: []
 categories: []
 date: 2019-06-08 20:27:00
 ---
-
 环境选择：
 python2.7、mac 
 原因：  
@@ -37,6 +36,8 @@ $ pip install https://storage.googleapis.com/tensorflow/mac/tensorflow-0.5.0-py2
 2. 创建虚拟环境（推荐
 3. 安装 TensorFlow pip 软件包
 
+旧版本下载地址：https://pypi.tuna.tsinghua.edu.cn/simple/tensorflow/
+
 选的是3中按系统安装：  
  pip install --user --upgrade tensorflow  
  
@@ -51,4 +52,3 @@ pip install pip? 还是不行
 ![upload successful](/images/pasted-3.png)
 
 然后再次安装tensorflow，第一次超时，第二次成功了（很慢，需要耐心等待）
-

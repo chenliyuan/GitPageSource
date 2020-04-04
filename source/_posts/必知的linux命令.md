@@ -3,6 +3,35 @@ tags: []
 categories: []
 date: 2019-07-15 19:28:00
 ---
+#### Linux文件有四种时间:
+    # stat /etc/hostname //查看文件详细信息包括时间
+    
+    访问时间:atime，查看内容 
+    修改时间:mtime，修改内容 
+    改变时间:ctime，文件属性，比如权限
+    删除时间:dtime，文件被删除的时间
+####  文件类型
+
+   ls -l 文件名 //看第一个字符
+   
+    - 普通文件(文本文件，二进制文件，压缩文件，电影，图片。。。) d 目录文件(蓝色)
+    b 设备文件(块设备)存储设备硬盘，U盘 /dev/sda, /dev/sda1
+    c 设备文件(字符设备)打印机，终端 /dev/tty1, /dev/zero
+    s 套接字文件
+    p 管道文件
+    l 链接文件(淡蓝色)
+
+#### type stat file 
+
+type		查看命令类型  -a查看所有    
+stat		查看文件详细信息   
+file		查看文件类型 
+##### cat命令
+    -n 显示行号
+    -A 包括控制字符(换行符/制表符)
+    linux $ 
+    Windows ^M$ 可通过其他方式转换成unix文件
+
 ##### cut命令
 
     -b 以字节为单位分割
@@ -273,5 +302,3 @@ https://blog.csdn.net/zgege/article/details/82315110
 
 	`vi /usr/bin/yum`
 	把#! /usr/bin/python修改为#! /usr/bin/python2
-    
- 

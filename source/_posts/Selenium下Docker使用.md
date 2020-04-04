@@ -118,4 +118,3 @@ b9449483ccb5        selenium/hub           "/opt/bin/entry_poin…"   2 minutes 
             
  若改成使用 Remote API 启动容器呢？
  待续
- 
