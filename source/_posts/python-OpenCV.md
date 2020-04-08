@@ -101,7 +101,10 @@ https://blog.csdn.net/A_Z666666/article/details/81324288
 
 ##### 文字区域识别-投影法
 https://www.jb51.net/article/178717.htm
+#### getStructuringElement()
+返回指定形状和尺寸的结构元素,一般在调用erode以及dilate函数之前
 
+https://blog.csdn.net/u013066730/article/details/97242189
 #### 问题：
 1、读取图片尽量不用中文路径
 
