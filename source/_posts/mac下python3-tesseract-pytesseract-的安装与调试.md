@@ -1,10 +1,46 @@
-title: mac下python3 + tesseract + pytesseract 的安装与调试
+title: ' tesseract 的环境安装'
 author: 躲不掉的风
 date: 2020-03-21 12:15:51
 tags:
 ---
-环境：mac
+###### windows 10 安装:
+第一步在虚拟环境或者正式环境pip安装：
 
+	 pip install pytesseract
+ 	 pip install pillow
+第二步 安装Tesseract-OCR	
+
+- 下载安装包官网：
+注意版本之前由于使用3.0.2一直报错，后来换成5.0才好
+	
+	https://github.com/UB-Mannheim/tesseract/wiki
+一路安装时可选择下语言包
+- 系统环境Path变量配置：
+
+	![upload successful](\images\pasted-106.png)
+
+	https://www.cnblogs.com/chenshengkai/p/11318272.html
+
+	验证： 
+    	tesseract --version
+- 在python文件下搜索pytesseract.py文件并修改路径：
+tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+
+![upload successful](\images\pasted-104.png)
+
+   参考
+   https://www.cnblogs.com/chenshengkai/p/11318387.html
+	https://blog.csdn.net/qq_38161040/article/details/90649497
+    
+   ```
+  import pytesseract
+  from PIL import Image
+
+  image = Image.open("data/enzh.png")
+  code = pytesseract.image_to_string(image,lang='chi_sim')
+  print(code)
+	 ```
+###### mac安装
 1. 		
     pip install pytesseract
     pip install tesseract  
