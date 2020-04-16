@@ -1,4 +1,4 @@
-title: python列表操作
+title: python语法总结
 author: 躲不掉的风
 date: 2020-04-11 21:06:51
 tags:
@@ -33,5 +33,24 @@ lang = ["Python", "C++", "Java", "PHP", "Ruby","Java" ,"MATLAB"]
 # lang.clear() #删除列表所有元素，返回空列表
 print(lang)
 ```
+#### set集合
+	
+   无序的唯一的不可变元素组成；多用于去重和取交集并集；
+    
+    li=["hello","world","java"]
+    a=set(li)   #使用set创建集合；只能是不可变的数据：数字类、字符串和元组；不包括列表字典和集合
+    b={1,"java"} #使用{}创建集合；
+    b.add((2,3)) #添加元素
+    for i in b: #查找元素
+        print(i)
+    a.remove("hello") #删除元素
+    print(len(b))
+    print (a&b) #取交集
+    print(a|b)#取并集
+    print(a-b)#取除了交际的a
+    print(a^b) #取非交集的ab所有元素
+    del(a)  #删除集合
+	
+
 
 具体参考：http://c.biancheng.net/view/2209.html
