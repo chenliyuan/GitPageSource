@@ -100,21 +100,25 @@ test case9
      ...    ELSE    获取文本校验  ${ele_register}    Register/Login
 ```
 ###### 字符串使用
-三目运算
+
+- 三目运算
 ```
 ${seller}    set variable if    ${seller}    ${seller}    ${test_data}[seller][account]
 ```
-移除部分字符串
+- 移除部分字符串
 ```
 ${t}    remove string     ShopeePay.ps_reports_wallet_all.20191125_20191225.csv    .csv
 ```
 ```
 ${after}=     remove string     ${test}       ,     ${SPACE}
 ```
-字符串连接 Catenate（与变量连接直接放一起也可以）
+- 字符串连接 Catenate（与变量连接直接放一起也可以）
 ![upload successful](/images/pasted-79.png)
 
 字符串转换成数字，可直接使用${${numstr}}或者int(${numstr})
+
+- 字符串格式化
+
 ###### 列表操作
 
 所有列表操作举例：cnblogs.com/ronyjay/p/11598107.html 
@@ -206,6 +210,13 @@ log    ${pagenum}
 - 其他：
 
 	run keyword and return status
+    
+    Run Keyword And Ignore Error  handle alert
+#可接收浏览器alert默认接收，即选择OK
+
+-  不支持的操作
+
+	循环嵌套、条件判断和循环直接组合(可通过定义关键字调用)
     
 ##### 为解决有些操作失败重新执行：
 ###### 1.添加关键字
