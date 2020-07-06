@@ -55,12 +55,12 @@ client.containers.run相当于docker run，参数ports字典类型，端口映�
 
 ####  Selenium Grid
 
-本文参考 https://www.cnblogs.com/hellangels333/p/9749905.html
-https://www.cnblogs.com/nanaheidebk/p/10109013.html
+  本文参考 https://www.cnblogs.com/hellangels333/p/9749905.html
+  https://www.cnblogs.com/nanaheidebk/p/10109013.html
 
-具体可看原文，原文更加详细，以下为部分摘录：
+  具体可看原文，原文更加详细，以下为部分摘录：
 
-这里主要针对的是 Selenium Grid，它用于分布式自动化测试，就是一套Selenium 代码可在不同的环境上运行。刚好，Docker可快速的创建各种环境。
+  这里主要针对的是 Selenium Grid，它用于分布式自动化测试，就是一套Selenium 代码可在不同的环境上运行。刚好，Docker可快速的创建各种环境。
 
 ###### Selenium Grid 有两个概念
 
@@ -68,7 +68,10 @@ https://www.cnblogs.com/nanaheidebk/p/10109013.html
 
 - node：分支节点，你可以看作 “北京总公司的测试小兵A” 和 “上海分公司的测试小兵B”，还有 “深圳分公司的测试小兵C” …。
 
-也就是说在Selenium Grid中只能有一个主hub，但可以在本地或远程建立 N 多个分支node，测试脚本指向主hub，由主hub 分配给本地/远程node 运行测试用例。
+  也就是说在Selenium Grid中只能有一个主hub，但可以在本地或远程建立 N 多个分支node，测试脚本指向主hub，由主hub 分配给本地/远程node 运行测试用例。node有两种，一个是firefox，一个chrome。   
+
+    hub：selenium/hub  
+    node：selenium/node-firefox ， selenium/node-chrome  
 
 ###### docker selenium 环境安装
 
@@ -85,36 +88,49 @@ https://www.cnblogs.com/nanaheidebk/p/10109013.html
 
 		$ sudo docker run -d -P --name selenium-hub selenium/hub
 
- -P 表示 Docker 会随机映射一个 49000~49900 的端口到内部容器开放的网络端口。
+ 	-P 表示 Docker 会随机映射一个 49000~49900 的端口到内部容器开放的网络端口。   
+    -d 表示在后台运行     
+    -name  命名   
+    selenium/hub：运行的镜像名称  
 
 4. 启动分支node chrome 容器
 
 		$ sudo docker run -d --link selenium-hub:hub selenium/node-chrome
 
-	–link 通过 link 关联 selenium-hub 容器，并为其设置了别名hub
+	–link 通过 link 关联 selenium-hub 容器，并为其设置了别名hub，链接别名是selenium-hub的容器(即上面启动的容器)     
 
 5. 查看容器
-```
-  LiyuanChendeMacBook-Pro:~ liyuanchen$ docker ps
-CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS                     NAMES
-e96d18013f73        selenium/node-chrome   "/opt/bin/entry_poin…"   4 seconds ago       Up 3 seconds                                  eager_sammet
-b9449483ccb5        selenium/hub           "/opt/bin/entry_poin…"   2 minutes ago       Up 2 minutes        0.0.0.0:32768->4444/tcp   selenium-hub                             eloquent_gates
-```
 
-	这里需要注意，Selenium/hub 容器的端口号为 4444，对Ubuntu映射的端口为 32768，前面通过 -P 参数自动分配。
+  ```
+    LiyuanChendeMacBook-Pro:~ liyuanchen$ docker ps
+  CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS                     NAMES
+  e96d18013f73        selenium/node-chrome   "/opt/bin/entry_poin…"   4 seconds ago       Up 3 seconds                                  eager_sammet
+  b9449483ccb5        selenium/hub           "/opt/bin/entry_poin…"   2 minutes ago       Up 2 minutes        0.0.0.0:32768->4444/tcp   selenium-hub                             eloquent_gates
+  ```
 
-	工作原理：
+  Selenium/hub 容器的端口号为 4444，而对Ubuntu映射的端口为 32768，前面通过 -P 参数自动分配。
+
+ 工作原理：
 
     <font color='red'/>selenium Grid脚本 -> ubuntu(32768) -> Hub容器(4444) -> Node Chrome 容器</font>
 
-    最终得到可使用的hub链接是http://127.0.0.1:32768/wd/hub
+  最终得到可使用的hub链接是：http://127.0.0.1:32768/wd/hub
     
  ###### 本地实践
  1. 启动主hub容器，获取端口号（按照如上命令）
  2. 启动分支node chrome 容器（按照如上命令）
- 3. 使用HUB执行RT命令
+ 3. 使用HUB执行RT命令运行robot命令
  
  			robot -d Output --loglevel TRACE -v env:staging -v area:sg  -v HUB:http://127.0.0.1:32769/wd/hub   -i all -i sg  SellerCenterUI/TestCase/03HomePage/
             
  若改成使用 Remote API 启动容器呢？
- 待续
+ 
+###### Docker SDK for Python
+
+官方文档：https://docker-py.readthedocs.io/en/stable/index.html
+
+众所周知，Docker向外界提供了一个API来管理其中的资源。这个API可以是socket文件形式的（一般也是默认的，在/var/run/docker.sock中），也可以是TCP形式的,本次项目使用的TCP方式定义
+
+
+
+

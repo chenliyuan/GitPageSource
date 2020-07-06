@@ -1,9 +1,9 @@
-title: RT本地环境配置
+title: Robot Framework环境配置和部署
 author: 躲不掉的风
 date: 2020-01-29 21:16:20
 tags:
 ---
-- 安装谷歌浏览器
+##### 安装谷歌浏览器
 
 	在win上安装：现在百度找个可用的chrome包都很难，最后干脆下载了个软件管理，瞬间安装好了。。。
 
@@ -11,31 +11,27 @@ tags:
     
 - 安装chromedriver
 
-http://chromedriver.chromium.org/downloads
-或
-http://chromedriver.storage.googleapis.com/index.html
+  http://chromedriver.chromium.org/downloads
+  或
+  http://chromedriver.storage.googleapis.com/index.html
 
-下载的driver的版本需要和浏览器的版本匹配，解压后放到本机,将文件路径添加至PATH中
+  下载的driver的版本需要和浏览器的版本匹配，解压后放到本机,将文件路径添加至PATH中
 
+    1. 将下载的可执行文件移到/usr/local/bin下
 
+    sudo mv chromedriver /usr/local/bin/chromedriver
 
-1、将下载的可执行文件移到/usr/local/bin下
+    2. : 修改文件权限
 
-sudo mv chromedriver /usr/local/bin/chromedriver
+    sudo chmod u+x,o+x /usr/local/bin/chromedriver
 
-2、: 修改文件权限
+    3. 检查是否安装成功:
 
-sudo chmod u+x,o+x /usr/local/bin/chromedriver
+        chromedriver --version
 
-3、检查是否安装成功:
-
-	chromedriver --version
-
-- 安装本地运行环境依赖库
+##### 安装本地运行环境依赖库
 
   如Python版本：python3.6
-
-  requirements.txt:
 
       requests==2.22.0
       robotframework==3.1.2
@@ -44,7 +40,13 @@ sudo chmod u+x,o+x /usr/local/bin/chromedriver
       selenium==3.141.0
       xlrd==1.2.0
       Pillow==6.2.1
+      
+      快速生成requirement.txt的安装文件
+      pip freeze > requirements.txt
+      安装所需要的文件
+      pip install -r requirement.txt
 
+##### 安装配置IDE--推荐pycharm
 - 安装插件 IntelliBot 、IntelliBot @SeleniumLibrary Patched、Robot Framework support 
 
 - Preferences-Editor-File Types-Robot Feature下添加*.robot类型
@@ -61,3 +63,11 @@ sudo chmod u+x,o+x /usr/local/bin/chromedriver
  ![upload successful](/images/pasted-77.png)
 
  ![upload successful](/images/pasted-78.png)
+ 
+##### 运行Case
+
+使用`robot`命令，jenkins可结合`rebot`使用
+
+    robot --output original.xml tests                          # first execute all tests
+    robot --rerunfailed original.xml --output rerun.xml tests  # then re-execute failing
+    rebot --merge original.xml rerun.xml                       # finally merge results

@@ -77,7 +77,7 @@ error: failed to push some refs to 'git@git.17usoft.com:app_test/doc.git'
 ###### 8. [GIT] warning: LF will be replaced by CRLF问题解决方法
 
 ```
-$ git config --gobal core.autocrlf false
+$ git config --global core.autocrlf false
 ```
 ###### 9. 由于某配置项错误配置导致push失败，解决：删除配置项目
 
@@ -113,4 +113,3 @@ LiyuandeMacBook-Pro:scqa_ui_auto_platform_projects liyuanchen$ git checkout mast
 Already on 'master'
 Your branch is up to date with 'origin/master'.
 ```
-
