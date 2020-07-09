@@ -14,3 +14,12 @@ tags:
   【解决】使用```el-table-infinite-scroll```指令结合elmentui中```infinite-scroll-disabled="disabled"```
 
    参考：https://zhuanlan.zhihu.com/p/114965548
+2. 在加载树形数据懒加载的时候报错 ```if there's nested data,rowKey is required```
+
+	原因：原来使用懒加载，table数据中没有children字段，但是现在新增了这个字段。
+  
+  因此满足了懒加载的第一种策略：即使我根本没有设置第一项(第一项指的是子元素字段，第二项懒加载的时候使用字段)
+  ```:tree-props="{children: 'children', hasChildren: 'hasChildren'}">```
+  
+  这样直接加载子项目的时候，发现我子项目里缺少id,因此报如上错
+ 

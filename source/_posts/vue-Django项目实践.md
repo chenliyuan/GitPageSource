@@ -52,18 +52,7 @@ getallbus 单层就不可以 ？
     'selecteddate':searchResult.date,
     'selectedbus':searchResult.bus
    }, { indices: false });
-    ```
-9. 路由:使用router-link :to 参数值使用this.xxx传参失败。最后使用Push操作解决
-
-    **和name配对的是params，和path配对的是query**
-    
-    query和params的区别，query相当于get请求，在页面跳转的时候，可以在地址栏看到请求参数，然而params则相当于post请求，参数不会在地址栏中显示。
-    
-    https://www.cnblogs.com/liweiz/p/10519629.html
-        1.命名路由搭配params，刷新页面参数会丢失
-        2.查询参数搭配query，刷新页面数据不会丢失
-        3.接受参数使用this.$route后面就是搭配路由的名称就能获取到参数的值
-        
+    ``` 
 10. 嵌套路由跳转失败？
 
    children挂载到了错误的节点上。
@@ -260,6 +249,5 @@ getallbus 单层就不可以 ？
           console.log(err);
         });
     },
-
   ```
   参考：https://segmentfault.com/a/1190000020540788?utm_source=tag-newest
