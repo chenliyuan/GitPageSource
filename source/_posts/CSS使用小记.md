@@ -45,3 +45,49 @@ tags:
   ```
   <div style="text-align:center">
   ```
+  
+4. 布局
+footer如何保持始终在最底部？https://blog.csdn.net/m0_38099607/article/details/71598423
+
+	父级：
+		#container{
+        /*保证footer是相对于container位置绝对定位*/
+        position:relative;  
+        width:100%;
+        min-height:100%; 
+        /*设置padding-bottom值大于等于footer的height值，以保证main的内容能够全部显示出来而不被footer遮盖；*/  
+        padding-bottom: 100px;  
+        box-sizing: border-box;
+    }
+    
+	footer要绝对位置		
+
+        footer{
+        width: 100%;
+        height:100px;   /* footer的高度一定要是固定值*/ 
+        position:absolute;
+        bottom:0px;
+        left:0px;
+        background: #333;
+    }
+    
+ 使得全局撑足屏幕？
+ 
+ html文件中添加，使用的container100%才生效
+ 
+       <style type="text/css">
+          html,
+          body {
+              height: 100%;
+          }
+
+          body {
+              margin: 0;
+          }
+      </style>
+      
+5. div居中
+
+ 内部div需要添加
+ 		
+        margin:0 auto

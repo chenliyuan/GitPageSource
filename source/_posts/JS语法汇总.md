@@ -3,9 +3,46 @@ author: 躲不掉的风
 date: 2020-06-18 18:09:11
 tags:
 ---
-1. JS合并两个数组
-    	a.push.apply(a,[4,5,6]);    
-       
+js数组操作方法以及es6新增方法:https://www.cnblogs.com/Ky-Thompson23/p/12408795.html
+
+1. JS合并两个数组 
+
+  apply会改变原数组的值
+    	a.push.apply(a,[4,5,6]);  
+  concat不会改变原数组的值
+       arr1 = [1,2];
+       arr2 = ["aa","as"];
+       console.log(arr1.concat(arr2));//[1, 2, "aa", "as"]
+  
+2. 删除数组某项	
+
+	splice(index,len,[item]) 注释：该方法会改变原始数组。
+    index:数组开始下标 
+    
+    len: 替换/删除的长度
+    
+    item:替换的值，删除操作的话 item为空
+	```
+    var arr = ['a','b','c','d']; 
+    arr.splice(1,1); 
+    console.log(arr); 
+    //['a','c','d'];
+    ```
+    删除某值元素
+    ```
+    a=[1,2,3]
+    a.splice(a.indexOf(2),1)// [1,3]
+    ```
+    参考 https://www.jb51.net/article/134312.htm
+    
+   添加 ---- len设置为0，item为添加的值 
+   
+   ```
+   var arr = ['a','b','c','d']; 
+  arr.splice(1,0,'ttt'); 
+  console.log(arr); 
+  //['a','ttt','b','c','d'] 表示在下标为1处添加一项'ttt' 
+   ```
 2. JS 排序功能  sort()
 	
     - 【原理】当数组长度<=10的时候，采用插入排序；>10的时候，采用快排。(当数据量很小的时候，插入排序效率优于快排)
@@ -54,7 +91,15 @@ tags:
 	参考：https://www.cnblogs.com/jianxian/p/10582683.html
     
     推荐：https://www.cnblogs.com/saifei/p/9043821.html
-
+        var summary = origin_outline
+          .replace(/<\/p>/g, "")
+          .split("<p>")
+          .filter(function(s) {
+            return s && s.trim();
+          })
+          .map(function(m) {
+            return m.trim();
+          });
 4. ES箭头函数
 
   基本形式：
@@ -104,5 +149,44 @@ tags:
     for(var i = 0; i < 999 ;i++){}
     console.timeEnd('统计时间'
     ```
-
+7.  数组对象筛选
  
+       ```this.materialss = this.materials.filter(item => item.categoryId === this.curTab.categoryId)```      
+8. 对象列表排重
+      ```
+      function unique(arr,field){
+          var map = {};
+          var res = [];
+          for (var i = 0; i < arr.length; i++) {
+              if (!map[arr[i][field]]) {
+                  map[arr[i][field]]=1;//巧妙利用对象键值唯一性判重
+                  res.push(arr[i]);
+              }
+          }
+           return res;
+       ```
+  原文链接：https://blog.csdn.net/qq_36949713/java/article/details/81942370
+  
+10. JS Base64转码
+
+```
+let Base64 = {
+    encode(str) {
+        // first we use encodeURIComponent to get percent-encoded UTF-8,
+        // then we convert the percent encodings into raw bytes which
+        // can be fed into btoa.
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+    },
+    decode(str) {
+        // Going backwards: from bytestream, to percent-encoding, to original string.
+        return decodeURIComponent(atob(str).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    }
+};
+```
+对于json数据，先转换成字符串
+Base64.encode(JSON.stringify(this.result))

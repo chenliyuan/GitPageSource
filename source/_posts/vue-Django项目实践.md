@@ -3,20 +3,8 @@ author: 躲不掉的风
 date: 2020-06-07 20:42:35
 tags:
 ---
-1. Django跨域设置  
 
- pip install django-cors-header   
-
-  setting中设置：
-
-       'corsheaders.middleware.CorsMiddleware' # 新加的插件位置最好放在CommonMiddleware之前      
-       INSTALLED_APPS中添加'corsheaders',    
-       CORS_ORIGIN_ALLOW_ALL = True   //新增   
-       CORS_ALLOW_CREDENTIALS = True  //新增
        
-2. 跨域设置后还是不可以？   
-/home/getallbus 可以 
-getallbus 单层就不可以 ？
 3. 接口报403  500 ?
 
   request.POST.get改成使用字典格式再用get获取   
@@ -207,15 +195,24 @@ getallbus 单层就不可以 ？
       },
   ```           
 10. 文件下载
+	后端Django
+    ```
+    file = open(update_file_path, 'rb') #update_file_path文件存放位置
+    response = FileResponse(file)
+    response['Content-Type'] = 'application/octet-stream'
+    #file_name下载下来保存的文件名字
+    content_dis = 'attachment;filename="'+file_name+'"'
+    response['Content-Disposition'] = content_dis
+    return response
+    ```
 
+    对流文件可使用 Blob对象 和 使用 js-file-download
 
-  对流文件可使用 Blob对象 和 使用 js-file-download
-  
-  发送请求时都要设置 responseType
-  
-  以下是完整的一个文件下载请求和处理过程：
-  ```
-  {
+    发送请求时都要设置 responseType
+
+    以下是完整的一个文件下载请求和处理过程：
+    ```
+    {
       var param = this.$qs.stringify(
         {
           sub_project: this.selectedsubproject,
@@ -250,4 +247,9 @@ getallbus 单层就不可以 ？
         });
     },
   ```
-  参考：https://segmentfault.com/a/1190000020540788?utm_source=tag-newest
+  
+  参考：https://segmentfault.com/a/1190000020540788?utm_source=tag-newest 
+  
+ 23. 打开已成型的Django项目路径无法跳转，展示红线条？
+
+     项目打开路径错误，应该打开到项目根路径(非外部路径)

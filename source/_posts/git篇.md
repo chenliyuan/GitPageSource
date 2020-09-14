@@ -2,6 +2,52 @@ title: git使用篇
 date: 2018-10-07 16:19:32
 ---
 git命令基础操作这篇文章很清楚：https://www.cnblogs.com/tocy/p/git-command-line-manual.html
+
+#### 分支合并到master
+https://blog.csdn.net/boysky0015/article/details/78185879/
+#### 创建分支并上传
+
+1.创建本地分支dev
+
+	git branch dev 
+
+(也可以在gitlab上手动添加后checkout)
+
+2.切换到分支dev
+
+	git checkout dev
+
+3.查看远程分支
+
+	git branch -a
+
+4.将代码暂存在本地
+
+	git add .
+
+5.给暂存在本地的代码打个tag
+
+	git commit -am "first commit"
+
+6.将本地代码推送到远程指定分支
+
+	git push origin <指定的分支名>
+
+7.从远程指定分支上拉取代码
+
+	git clone -b  <指定分支名>  <ssh或者http地址> 
+    
+8. 删除远程分支
+
+	git push origin --delete [branch_name]
+
+链接：https://www.jianshu.com/p/801d00b15624
+
+拉取新分支
+
+	git checkout  -b new_camp //创建并跳转到new_camp新分支名
+    (或你用两步代替：git  branch +新分支名，git  checkout +新的分支名)
+
 ## 常见出错和问题
 
 ###### 1.  出现error: The following untracked working tree files would be overwritten by checkout

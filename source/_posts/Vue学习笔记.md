@@ -3,6 +3,12 @@ author: 躲不掉的风
 date: 2020-05-08 15:09:01
 tags:
 ---
+特别好的文章：https://www.cnblogs.com/chen-yi-yi/p/11152391.html
+
+父组件运行子组件事件事件和传值
+
+https://www.cnblogs.com/shizk/p/11498134.html
+
 ##### 父组件传参给子组件
 父组件通过`属性`的形式向子组件传值
 步骤：
@@ -51,4 +57,3 @@ tags:
 ```
 
 ![upload successful](/images/pasted-113.png)
-
